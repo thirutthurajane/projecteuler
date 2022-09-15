@@ -3,8 +3,24 @@ module Main (main) where
 import Lib
 
 main :: IO ()
-main = print(multiple3or5 1000000)
+main = print(sum $ digits $ factorial 100)
 
 -- Problem 1 Multiples of 3 or 5
 multiple3or5 :: Int -> Int
 multiple3or5 i = sum $ filter (\i -> i  `mod` 3 == 0 || i `mod` 5 == 0) [0..i]
+
+-- Problem 3 Largest prime factor
+primeFactor :: Int -> [Int]
+primeFactor 1 = []
+primeFactor n
+  | factors == [] = [n]
+  | otherwise = factors ++ primeFactor (n `div`(head factors))
+  where factors = take 1 $ filter(\x -> (n `mod` x == 0)) [2..n-1]
+
+-- Problem 20 Factorial digit sum
+factorial :: Integer -> Integer
+factorial 0 = 1
+factorial n = n * factorial(n - 1)
+
+digits :: Integer -> [Int]
+digits n = map (\x -> read [x] :: Int) (show n)
