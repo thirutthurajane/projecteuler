@@ -3,7 +3,7 @@ module Main (main) where
 import Lib
 
 main :: IO ()
-main = print(sumSquareDiff 100)
+main = print(selfPower 1000)
 
 -- Problem 1 Multiples of 3 or 5
 multiple3or5 :: Int -> Int
@@ -30,3 +30,16 @@ digits n = map (\x -> read [x] :: Int) (show n)
 -- Sum square difference
 sumSquareDiff :: Integer -> Integer
 sumSquareDiff n = (sum [1..n] ^ 2) - (sum $ map (^2) [1..n])
+
+-- Problem 16
+-- Power Digit Sum
+powerDigitSum :: Int -> Int
+powerDigitSum n = sum $ digits $ 2 ^ n
+
+-- Problem 48 Self powers 
+-- Sum of Self Power
+selfPower :: Int -> Integer
+selfPower i =  sumList $ map(\n -> toInteger n ^ n) [1..i]
+
+sumList :: [Integer] -> Integer
+sumList l = sum l
