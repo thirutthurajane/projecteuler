@@ -3,7 +3,7 @@ module Main (main) where
 import Lib
 
 main :: IO ()
-main = print(sum $ digits $ factorial 100)
+main = print(sumSquareDiff 100)
 
 -- Problem 1 Multiples of 3 or 5
 multiple3or5 :: Int -> Int
@@ -18,9 +18,15 @@ primeFactor n
   where factors = take 1 $ filter(\x -> (n `mod` x == 0)) [2..n-1]
 
 -- Problem 20 Factorial digit sum
+-- sum $ digits $ factorial 100
 factorial :: Integer -> Integer
 factorial 0 = 1
 factorial n = n * factorial(n - 1)
 
 digits :: Integer -> [Int]
 digits n = map (\x -> read [x] :: Int) (show n)
+
+-- Problem 6
+-- Sum square difference
+sumSquareDiff :: Integer -> Integer
+sumSquareDiff n = (sum [1..n] ^ 2) - (sum $ map (^2) [1..n])
